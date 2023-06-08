@@ -1,3 +1,2 @@
 #!/bin/bash
-
-#COULD NOT GET IT
+telnet towel.blinkenlights.nl
