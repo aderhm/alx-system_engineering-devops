@@ -1,12 +1,10 @@
 #!/usr/bin/env bash
 # Adds a custom header to http responses
 
-HOSTNAME=$(hostname)
-
 sudo apt-get -y update
 sudo apt-get -y install nginx
 
-sudo sed -i "45i\\\tadd_header X-Served-By $HOSTNAME;" /etc/nginx/sites-available/default
+sudo sed -i "47i\\\tadd_header X-Served-By $HOSTNAME;" /etc/nginx/sites-available/default
 sudo echo "Hello World!" | sudo tee /var/www/html/index.hml
 
 sudo service nginx start
