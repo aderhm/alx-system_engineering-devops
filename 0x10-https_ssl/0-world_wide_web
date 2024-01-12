@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+#
+
+if [[ $# == 1 ]]; then
+	subdomains=('www' 'lb-01' 'web-01' 'web-02')
+	for i in "${subdomains[@]}"; do
+		URL="$i.$1"
+		DIG_RETURN=$(dig $URL | grep -A1 'ANSWER SECTION:' | awk 'NR==2 {print $0}')
+		echo "The subdomain $i is a $(echo $DIG_RETURN | awk '{print $4}') record and points to $(echo $DIG_RETURN | awk '{print $5}')"
+	done
+else
+	URL="$2.$1"
+	DIG_RETURN=$(dig $URL | grep -A1 'ANSWER SECTION:' | awk 'NR==2 {print $0}')
+	echo "The subdomain $2 is a $(echo $DIG_RETURN | awk '{print $4}') record and points to $(echo $DIG_RETURN | awk '{print $5}')"
+fi
