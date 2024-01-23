@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Fix an nginx server so it is running as the `nginx` user.
+
+sudo chmod 644 /etc/nginx/nginx.conf
+pkill -f apache2
+sudo sed -i "s/80/8080/" /etc/nginx/sites-enabled/default
+sudo -u nginx service nginx restart
