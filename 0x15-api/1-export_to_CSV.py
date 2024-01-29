@@ -30,9 +30,9 @@ def export_user_tasks_to_csv(employee_id):
 
         for todo in todos_data:
             writer.writerow({
-                user_id,
+                str(user_id),
                 user_name,
-                todo['completed'],
+                str(todo['completed']),
                 todo['title']
             })
 
