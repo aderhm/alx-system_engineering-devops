@@ -24,17 +24,15 @@ def export_user_tasks_to_csv(employee_id):
     with open(csv_file_name, 'w', newline='') as csvfile:
         writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
 
-        writer.writerow([
-            'USER_ID', 'USERNAME', 'TASK_COMPLETED_STATUS', 'TASK_TITLE'
-            ])
-
         for todo in todos_data:
-            writer.writerow({
-                str(user_id),
-                user_name,
-                str(todo['completed']),
-                todo['title']
-            })
+            csvfile.write(
+                '"{}","{}","{}","{}"\n'.format(
+                    user_id,
+                    user_name,
+                    todo.get('completed'),
+                    todo.get('title')
+                )
+            )
 
 
 if __name__ == '__main__':
