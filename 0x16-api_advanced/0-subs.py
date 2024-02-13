@@ -11,13 +11,9 @@ def number_of_subscribers(subreddit):
     if not subreddit:
         return 0
 
-    url = f"https://www.reddit.com/r/{subreddit}/about.json"
+    url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
     header = {'User-Agent': 'API Advanced'}
 
-    response = requests.get(url, headers=header)
-    data = response.json()
+    response = requests.get(url, headers=header).json()
 
-    if "data" in data and "subscribers" in data["data"]:
-        return data["data"]["subscribers"]
-    else:
-        return 0
+    return response.get("data", {}).get("subscribers", 0)
