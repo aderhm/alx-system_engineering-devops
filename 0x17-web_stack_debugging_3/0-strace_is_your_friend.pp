@@ -1,5 +1,5 @@
 # Fixes bad `php` extensions
 exec {'fix-extension':
-    command => 'sed -i s/phpp/php/ /var/www/html/wp-settings.php',
-    provider => 'shell',
+    command => "sed -i 's/phpp/php/g' /var/www/html/wp-settings.php",
+    path => "/bin"
 }
